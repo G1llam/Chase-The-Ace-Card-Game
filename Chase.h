@@ -3,13 +3,11 @@
 #include <algorithm>
 #include <random>
 
-/*Card structure*/
 struct Card{
     std::string rank;
     std::string suit;
 };
 
-/*Generate a deck of playing cards*/
 std::vector<Card> GenerateDeck(){
     std::vector<Card> deck;
     std::string suits[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
@@ -23,14 +21,12 @@ std::vector<Card> GenerateDeck(){
     return deck;
 }
 
-/*Shuffle the deck*/
 void ShuffleDeck(std::vector<Card>& deck){
     std::random_device rd;
     std::mt19937 mt(rd());
     std::shuffle(deck.begin(), deck.end(), mt);
 }
 
-/* Function to calculate the score*/
 int getRankValue(const std::string& rank) {
     if (rank == "Ace")
         return 1;
@@ -57,7 +53,6 @@ int getRankValue(const std::string& rank) {
     return 0;
 }
 
-/*Function to calculate the score*/
 int calculateScore(const std::vector<Card>& hand) {
     int score = 0;
     for (const auto& card : hand) {
@@ -77,7 +72,7 @@ void PlayGame() {
     std::vector<Card> playerHand;
     std::vector<Card> aiHand;
 
-    // Deal the initial cards
+    //Deal the initial cards
     playerHand.push_back(deck.back());
     deck.pop_back();
     aiHand.push_back(deck.back());
@@ -133,7 +128,6 @@ void PlayGame() {
                 std::cout << "Your final score: " << playerScore << std::endl;
                 std::cout << "AI's final score: " << aiScore << " \n " << std::endl;
 
-                // Determine the winner
                 if (playerScore > aiScore) {
                     std::cout << "You win! \n" << std::endl;
                     GameOver = true;
